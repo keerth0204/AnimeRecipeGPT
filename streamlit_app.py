@@ -11,15 +11,15 @@ from openai import OpenAI as AI
 
 #Import or define your constants
 config = dotenv_values(".env")
-OPENAI_API_KEY = config["OPENAI_API_KEY"]
-EDAMAM_API_ID = config["EDAMAM_APP_ID"]
-EDAMAM_APP_KEY = config["EDAMAM_APP_KEY"]
+#OPENAI_API_KEY = config["OPENAI_API_KEY"]
+#EDAMAM_API_ID = config["EDAMAM_APP_ID"]
+#EDAMAM_APP_KEY = config["EDAMAM_APP_KEY"]
 api_endpoint = 'https://api.edamam.com/api/nutrition-details'
 
 #Function that fetches Nutrition Information
 def get_edamam_analysis(details, anime_details):
      
-     url = api_endpoint + '?app_id=' + EDAMAM_API_ID + '&app_key=' + EDAMAM_APP_KEY
+     url = api_endpoint + '?app_id=' + st.secrets["EDAMAM_API_ID"] + '&app_key=' + st.secrets["EDAMAM_APP_KEY"]
      headers = {'Content-Type' : 'application/json'}
      parameters = {
           'title':anime_details['Dish'],
@@ -40,7 +40,7 @@ def create_image(response):
     
     dish = response['Dish']
     anime = response['Anime']
-    client = AI(api_key=OPENAI_API_KEY)
+    client = AI(api_key=st.secrets["OPENAI_API_KEY"])
     prompt = f'Create anime an image of the dish {dish} from the anime {anime}'
     image_parameters = {
         "prompt": prompt,
