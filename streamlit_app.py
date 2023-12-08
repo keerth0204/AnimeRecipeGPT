@@ -113,7 +113,7 @@ def generate_response(query):
     
     #Retrieve responses from openai from this section
     #Initialize LLM
-    model = OpenAI(openai_api_key=OPENAI_API_KEY,temperature=0)
+    model = OpenAI(openai_api_key=st.secrets["OPENAI_API_KEY"],temperature=0)
 
     #Chain prompt, model and parser
     #Anime details
